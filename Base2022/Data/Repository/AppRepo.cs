@@ -1,7 +1,10 @@
 ﻿using Base2022.Data;
 using Base2022.Data.Entities;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace BE_Base2022.Repository
 {
@@ -23,6 +26,11 @@ namespace BE_Base2022.Repository
         {
             await _context.Tasks.AddAsync(task);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<List<TaskK>> GetTasks()
+        {
+            return  _context.Tasks.Include(x=>x.Employee).ToList();
         }
     }
 }

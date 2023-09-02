@@ -91,7 +91,7 @@ namespace Base2022.Controllers
                 foreach (var user in users)
                 {
                     var role = (await _userManager.GetRolesAsync(user)).FirstOrDefault();
-                    allUserDTO.Add(new UserDto(user.FullName, user.Email, user.UserName, user.DateCreated, role,user.Birthday,user.Mobile));
+                    allUserDTO.Add(new UserDto(user.FullName, user.Email, user.UserName, user.DateCreated, role,user.Birthday,user.Mobile,user.Id));
                 }
                 return await Task.FromResult(new ResponseModel(ResponseCode.OK, "", allUserDTO));
             }
@@ -135,7 +135,7 @@ namespace Base2022.Controllers
                             var role = (await _userManager.GetRolesAsync(user)).FirstOrDefault();
                             if (role == "Employee")
                             {
-                                allUserDTO.Add(new UserDto(user.FullName, user.Email, user.UserName, user.DateCreated, role, user.Birthday, user.Mobile));
+                                allUserDTO.Add(new UserDto(user.FullName, user.Email, user.UserName, user.DateCreated, role, user.Birthday, user.Mobile,user.Id));
                             }
                         }
                         break;
